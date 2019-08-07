@@ -12,6 +12,7 @@ export class ProductsComponent implements OnInit {
   productList: Product[] = [];
   colorList = ['Blue', 'Brown', 'Green', 'Grey', 'Lightblue', 'Pink', 'Red', 'Violet'];
   colorProduct = '#383938';
+  maxPrice: number;
 
   constructor(private prodService: ProductService) {
     this.prodService.searchProduct(null).subscribe(
@@ -26,9 +27,33 @@ export class ProductsComponent implements OnInit {
   onAdd() {
     this.newProduct.num = this.productList.length + 1;
     this.newProduct.color = this.colorProduct;
-    this.productList.push(this.newProduct);
+    // this.productList.push(this.newProduct);
+    this.prodService.addProduct(this.newProduct).subscribe((produitEnregistre) => {
+      console.log('produit enregistre = ' + produitEnregistre);
+      console.log('produit enregistre = ' + JSON.stringify(produitEnregistre));
+      this.onMaxPrice();
+    },
+    (err) => { console.log(err); });
     this.newProduct = new Product();
     this.colorProduct = '#383938';
   }
+
+  onMaxPrice() {
+    this.prodService.searchProduct(this.maxPrice).subscribe(
+      (listeProd) => { this.productList = listeProd; },
+      (err) => { console.log(err); });
+  }
+
+  // onAjoutProduit() {
+  //   this.prodService.addProduct(this.newProduct)
+  //       .subscribe( (produitEnregistre) => {
+  //                         console.log('produit enregistre = ' + produitEnregistre);
+  //                         console.log('produit enregistre = ' +
+  //                              JSON.stringify(produitEnregistre));
+  //                         this.onMaxPrice();
+  //                        },
+  //                   (err) => { console.log(err); });
+  //   this.newProduct = new Product();
+  // }
 
 }
