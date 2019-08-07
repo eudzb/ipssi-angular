@@ -1,0 +1,94 @@
+<div class="container">
+  <span class="d-block mt-5 h5 font-weight-light"
+  >Enter new product :</span>
+  <form (submit)="onAdd()" #f="ngForm">
+    <div class="row mt-3">
+      <input
+      name="Name"
+      type="text"
+      class="form-control mb-3 col-md-4 offset-md-4 border-bottom border-dark border-top-0 border-left-0 border-right-0"
+      placeholder="Name"
+      [(ngModel)]="newProduct.name"
+      ngModel
+      #name="ngModel"
+      required>
+      <i *ngIf="newProduct.name"
+      class="material-icons dp48 ml-md-4 align-self-center mb-3">check</i>
+      <i *ngIf="!newProduct.name && name.touched"
+      class="material-icons dp48 ml-md-4 align-self-center mb-3">close</i>
+      <input
+      name="Price"
+      type="number"
+      class="form-control mb-3 col-md-4 offset-md-4 border-bottom border-dark border-top-0 border-left-0 border-right-0"
+      placeholder="Price"
+      step="100"
+      [(ngModel)]="newProduct.price"
+      ngModel
+      #price="ngModel"
+      required>
+      <i *ngIf="newProduct.price"
+      class="material-icons dp48 ml-md-4 align-self-center mb-3">check</i>
+      <i *ngIf="!newProduct.price && price.touched"
+      class="material-icons dp48 ml-md-4 align-self-center mb-3">close</i>
+      <input
+      name="Description"
+      type="text"
+      class="form-control mb-3 col-md-4 offset-md-4 border-bottom border-dark border-top-0 border-left-0 border-right-0"
+      placeholder="Description"
+      [(ngModel)]="newProduct.description"
+      ngModel
+      #description="ngModel"
+      required>
+      <i *ngIf="newProduct.description"
+      class="material-icons dp48 ml-md-4 align-self-center mb-3">check</i>
+      <i *ngIf="!newProduct.description && description.touched"
+      class="material-icons dp48 ml-md-4 align-self-center mb-3">close</i>
+      <select
+      name="colorProduct"
+      class="form-control mb-3 col-md-4 offset-md-4 border-bottom border-dark border-top-0 border-left-0 border-right-0"
+      [(ngModel)]="colorProduct"
+      required
+      ngModel>
+        <option disabled selected>Select your color</option>
+        <option
+        *ngFor="let c of colorList"
+        [selected]="c === 'Brown'">{{c}}</option>
+      </select>
+      <i
+      class="material-icons dp48 ml-md-4 rounded-circle align-self-center mb-3"
+      [ngStyle]="{'background' : colorProduct, 'color' : colorProduct}">panorama_fish_eye</i>
+    </div>
+    <button
+    type="submit"
+    class="btn btn-dark text-center shadow"
+    [disabled]="f.invalid"
+    ><i class="material-icons dp48 align-bottom">add</i>Add</button>
+  </form>
+</div>
+
+<table class="table mt-5 table-light table-striped shadow">
+  <thead class="text-dark">
+    <th>N°</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th>Color</th>
+    <th>Delete</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of productList" class="font-weight-light text-dark">
+      <td>{{p.num}}</td>
+      <td>{{p.name}}</td>
+      <td>$ {{p.price}}</td>
+      <td>{{p.description}}</td>
+      <td>
+        <i
+        class="material-icons dp48 rounded-circle align-self-center"
+        [ngStyle]="{'background' : p.color, 'color' : p.color}">panorama_fish_eye</i>
+      </td>
+      <td>
+        <i class="material-icons dp48 align-self-center text-danger pointer">delete</i>
+      </td>
+    </tr>
+  </tbody>
+</table>

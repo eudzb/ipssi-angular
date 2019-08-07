@@ -1,0 +1,19 @@
+<div class="container text-center mt-5">
+  <div class="row">
+    <div class="col-12 col-lg-4 offset-lg-4">
+      <span class="h3 text-uppercase font-weight-bold title pb-2 border-dark">Welcome</span>
+    </div>
+    <div class="col-12 col-lg-4 mt-lg-0 mt-5 text-center">
+      <button
+      type="button"
+      class="btn btn-light float-lg-right shadow-sm mr-4 mr-lg-0"
+      (click)="onClick('light')">Light theme</button>
+      <button
+      type="button"
+      class="btn btn-dark float-lg-right shadow-sm mr-lg-3"
+      (click)="onClick('secondary')">Dark theme</button>
+    </div>
+  </div>
+
+  <app-products></app-products>
+</div>

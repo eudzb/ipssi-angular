@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  transition: linear 0.2s;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.form-control:focus {
+  color: #495057 !important;
+  background-color: #fff !important;
+  outline: 0 !important;
+  box-shadow: 5px -5px 0px 4px #353a40;
+}
