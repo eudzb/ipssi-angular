@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-products',
@@ -9,13 +10,14 @@ import { Product } from '../product';
 export class ProductsComponent implements OnInit {
   newProduct: Product = new Product();
   productList: Product[] = [];
-  colorList = ['Brown', 'Lightblue', 'Pink', 'Green'];
+  colorList = ['Blue', 'Brown', 'Green', 'Grey', 'Lightblue', 'Pink', 'Red', 'Violet'];
   colorProduct = '#383938';
 
-  constructor() {
-    this.productList.push(new Product(1, 'cahier', 2.5, 'grand cahier', 'lightblue'));
-    this.productList.push(new Product(2, 'stylo', 1.99, 'stylo bleu', 'green'));
-    this.productList.push(new Product(3, 'sac', 14, 'sac de sport'));
+  constructor(private prodService: ProductService) {
+    this.prodService.searchProduct(null).subscribe(
+      list => this.productList = list,
+      err => console.log(err)
+    );
   }
 
   ngOnInit() {

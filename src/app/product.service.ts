@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Product } from './product';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   searchProduct(maxPrice: number): Observable <Product[]> {
-    return of([
-      new Product(1, 'cahier', 2.5, 'grand cahier', 'lightblue'),
-      new Product(2, 'stylo', 1.99, 'stylo bleu', 'green'),
-      new Product(3, 'sac', 14, 'sac de sport')
-    ]);
+    const url = 'http://localhost:8282/catalogue/public/products';
+    return this.http.get<Product[]>(url);
   }
 }

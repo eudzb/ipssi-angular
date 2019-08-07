@@ -78,9 +78,9 @@
   <tbody>
     <tr *ngFor="let p of productList" class="font-weight-light text-dark">
       <td>{{p.num}}</td>
-      <td>{{p.name}}</td>
+      <td>{{p.name | titlecase}}</td>
       <td>$ {{p.price}}</td>
-      <td>{{p.description}}</td>
+      <td>{{p.description | titlecase}}</td>
       <td>
         <i
         class="material-icons dp48 rounded-circle align-self-center"
